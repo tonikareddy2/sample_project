@@ -43,13 +43,16 @@ def delete_movie(id):
     print("Movie deleted successfully.")
 
 
-def update_movie(MovieId, year):
+def update_movie(title, year, director_id, movie_id):
     cursor.execute(
-        "UPDATE Movies SET Year = ? WHERE MovieId = ?",
-        (year, MovieId),
+        """
+        Update Movies
+        Set Title = ?, Year = ?, DirectorId = ?
+        where MovieId = ?
+        """,
+        (title, year, director_id, movie_id),
     )
     conn.commit()
-    print("Movie Updated Successfully")
 
 
 if __name__ == "__main__":
@@ -74,9 +77,11 @@ if __name__ == "__main__":
             read_movies()
         elif choice == "4":
             read_movies()
-            MovieId = int(input("Enter the movieId:"))
-            year = input("Enter the movie year to change: ")
-            update_movie(MovieId, year)
+            movie_id = int(input("Please enter movie's id: "))
+            title = input("Please enter movie title: ")
+            year = int(input("Please enter movie year: "))
+            director_id = int(input("Please enter movie director's id: "))
+            update_movie(title, year, director_id, movie_id)
         elif choice == "5":
             break
         else:
