@@ -251,4 +251,4 @@ if __name__ == "__main__":
 
     # Clean up code
     # cursor.close()
-    conn.close()
+    # conn.close()
