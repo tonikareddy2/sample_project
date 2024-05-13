@@ -1,4 +1,6 @@
 import pyodbc
+from Entity.movie import Movie
+from DAO.movie_service import MovieService
 
 server_name = "DESKTOP-P8QAI2N\SQLEXPRESS"
 database_name = "HexawareMovieDB"
@@ -91,43 +93,43 @@ print("Database connection is successful")
 
 
 # Encapsulation
-class MovieService:
-    def read_movies(self):
-        cursor.execute("Select * from Movies")
-        # movies = cursor.fetchall() # Get all data
-        # for movie in movies:
-        #     print(movie)
+# class MovieService:
+#     def read_movies(self):
+#         cursor.execute("Select * from Movies")
+#         # movies = cursor.fetchall() # Get all data
+#         # for movie in movies:
+#         #     print(movie)
 
-        # Get data one row at a time
-        for row in cursor:
-            print(row)
+#         # Get data one row at a time
+#         for row in cursor:
+#             print(row)
 
-    # Task 1
-    # Get the data from the user
-    # Clue: Use arguments
-    def create_movie(self, movie):
-        cursor.execute(
-            "INSERT INTO Movies (Title, Year, DirectorId) VALUES (?, ?, ?)",
-            (movie.title, movie.year, movie.director_id),
-        )
-        conn.commit()  # Permanent storing | If no commit then no data
+#     # Task 1
+#     # Get the data from the user
+#     # Clue: Use arguments
+#     def create_movie(self, movie):
+#         cursor.execute(
+#             "INSERT INTO Movies (Title, Year, DirectorId) VALUES (?, ?, ?)",
+#             (movie.title, movie.year, movie.director_id),
+#         )
+#         conn.commit()  # Permanent storing | If no commit then no data
 
-    def update_movie(self, movie, movie_id):
-        cursor.execute(
-            """
-            Update Movies
-            Set Title = ?, Year = ?, DirectorId = ?
-            where MovieId = ?
-            """,
-            (movie.title, movie.year, movie.director_id, movie_id),
-        )
-        conn.commit()  # Permanent storing | If no commit then no data
+#     def update_movie(self, movie, movie_id):
+#         cursor.execute(
+#             """
+#             Update Movies
+#             Set Title = ?, Year = ?, DirectorId = ?
+#             where MovieId = ?
+#             """,
+#             (movie.title, movie.year, movie.director_id, movie_id),
+#         )
+#         conn.commit()  # Permanent storing | If no commit then no data
 
-    # Task 2
-    # Delete a movie from the db by getting the id from user
-    def delete_movie(self, movie_id):
-        cursor.execute("Delete from Movies Where MovieId = ?", movie_id)
-        conn.commit()
+#     # Task 2
+#     # Delete a movie from the db by getting the id from user
+#     def delete_movie(self, movie_id):
+#         cursor.execute("Delete from Movies Where MovieId = ?", movie_id)
+#         conn.commit()
 
 
 class DirectorService:
@@ -140,11 +142,11 @@ class ActorService:
 
 # Entity / Model
 # Encapsulation - Movie data
-class Movie:
-    def __init__(self, title, year, director_id):
-        self.title = title
-        self.year = year
-        self.director_id = director_id
+# class Movie:
+#     def __init__(self, title, year, director_id):
+#         self.title = title
+#         self.year = year
+#         self.director_id = director_id
 
 
 class Director:
@@ -177,7 +179,7 @@ class Actor:
 
 
 def movie_menu():
-    movie_service = MovieService()
+    movie_service = MovieService(conn)
 
     while True:
         print(
