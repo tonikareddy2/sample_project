@@ -12,14 +12,15 @@ conn_str = (
     f"Database={database_name};"
     f"Trusted_Connection=yes;"
 )
-# print(conn_str)
+# print(conn_str)1
 conn = pyodbc.connect(conn_str)
-cursor = conn.cursor()
-cursor.execute("SELECT 1")
-print("Database connection is successful")
+# cursor = conn.cursor()
+# cursor.execute("SELECT 1")
+# print("Database connection is successful")
 
 
 # class MovieServices:
+
 #     def read_movies(self):
 #         cursor.execute("SELECT * FROM Movies")
 #         movies = cursor.fetchall()
@@ -249,5 +250,5 @@ if __name__ == "__main__":
             break
 
     # Clean up code
-    cursor.close()
+    # cursor.close()
     conn.close()
