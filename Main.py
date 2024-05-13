@@ -173,61 +173,57 @@ class Actor:
 # 4. Delete a Movie
 # 5. Back
 
+
 # C - Create
 # R - Read
 # U - Update
 # D - Delete
-
-
-def movie_menu():
-    movie_service = MovieService(conn)
-
-    while True:
-        print(
-            """      
-        1. Add a Movie
-        2. View all Movies
-        3. Update a Movie  
-        4. Delete a Movie
-        5. Back to main menu
+class MainMenu:
+    def movie_menu(self):
+        movie_service = MovieService(conn)
+        while True:
+            print(
+                """      
+                1. Add a Movie
+                2. View all Movies
+                3. Update a Movie  
+                4. Delete a Movie
+                5. Back to main menu
                 """
-        )
-        choice = int(input("Please choose from above options: "))
+            )
+            choice = int(input("Please choose from above options: "))
+            if choice == 1:
+                title = input("Please enter movie title: ")
+                year = int(input("Please enter movie year: "))
+                director_id = int(input("Please enter movie director's id: "))
+                new_movie = Movie(title, year, director_id)
+                movie_service.create_movie(new_movie)
+            elif choice == 2:
+                movie_service.read_movies()
+            elif choice == 3:
+                movie_id = int(input("Please enter movie's id: "))
+                title = input("Please enter movie title: ")
+                year = int(input("Please enter movie year: "))
+                director_id = int(input("Please enter movie director's id: "))
+                updated_movie = Movie(title, year, director_id)
+                movie_service.update_movie(updated_movie, movie_id)
+            elif choice == 4:
+                movie_id = int(input("Please tell a movie id to delete: "))
+                movie_service.delete_movie(movie_id)
+            elif choice == 5:
+                break
 
-        if choice == 1:
-            title = input("Please enter movie title: ")
-            year = int(input("Please enter movie year: "))
-            director_id = int(input("Please enter movie director's id: "))
-            new_movie = Movie(title, year, director_id)
-            movie_service.create_movie(new_movie)
-        elif choice == 2:
-            movie_service.read_movies()
-        if choice == 3:
-            movie_id = int(input("Please enter movie's id: "))
-            title = input("Please enter movie title: ")
-            year = int(input("Please enter movie year: "))
-            director_id = int(input("Please enter movie director's id: "))
-            updated_movie = Movie(title, year, director_id)
-            movie_service.update_movie(updated_movie, movie_id)
-        elif choice == 4:
-            movie_id = int(input("Please tell a movie id to delete: "))
-            movie_service.delete_movie(movie_id)
-        elif choice == 5:
-            break
+    def director_menu(self):
+        pass
 
-
-def director_menu():
-    pass
-
-
-def actor_menu():
-    pass
+    def actor_menu(self):
+        pass
 
 
 # Task 5 - Keep it in loop
 if __name__ == "__main__":
     print("Welcome to the movies app")
-
+    main_menu = MainMenu()
     while True:
         print(
             """      
@@ -241,11 +237,11 @@ if __name__ == "__main__":
         choice = int(input("Please choose from above options: "))
 
         if choice == 1:
-            movie_menu()
+            main_menu.movie_menu()
         elif choice == 2:
-            director_menu()
+            main_menu.director_menu()
         elif choice == 3:
-            actor_menu()
+            main_menu.actor_menu()
         elif choice == 4:
             break
 
