@@ -1,7 +1,7 @@
-from Entity.movie import Movie
-from DAO.movie_service import MovieService
-from Entity.Director import Director
-from DAO.director_service import DirectorService
+from Entity import Movie, Director
+
+# from Entity.__init__ import Movie,Director,Actor ---- these 2 statements are corrects
+from DAO import MovieService, DirectorService
 
 
 class MainMenu:
