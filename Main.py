@@ -1,6 +1,8 @@
 # import pyodbc
 from Entity.movie import Movie
 from DAO.movie_service import MovieService
+from Entity.Director import Director
+from DAO.director_service import DirectorService
 
 # server_name = "DESKTOP-P8QAI2N\SQLEXPRESS"
 # database_name = "HexawareMovieDB"
@@ -133,8 +135,8 @@ from DAO.movie_service import MovieService
 #         conn.commit()
 
 
-class DirectorService:
-    pass
+# class DirectorService:
+#     pass
 
 
 class ActorService:
@@ -180,6 +182,7 @@ class Actor:
 # D - Delete
 class MainMenu:
     movie_service = MovieService()
+    director_service = DirectorService()
 
     def movie_menu(self):
         while True:
@@ -215,7 +218,19 @@ class MainMenu:
                 break
 
     def director_menu(self):
-        pass
+        while True:
+            print(
+                """
+                1. View all Directors
+                2. Back to main menu
+                """
+            )
+            choice = int(input("Please choose from above options: "))
+
+            if choice == 1:
+                self.director_service.view_directors()
+            elif choice == 2:
+                break
 
     def actor_menu(self):
         pass
