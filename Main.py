@@ -179,8 +179,9 @@ class Actor:
 # U - Update
 # D - Delete
 class MainMenu:
+    movie_service = MovieService(conn)
+
     def movie_menu(self):
-        movie_service = MovieService(conn)
         while True:
             print(
                 """      
@@ -197,19 +198,19 @@ class MainMenu:
                 year = int(input("Please enter movie year: "))
                 director_id = int(input("Please enter movie director's id: "))
                 new_movie = Movie(title, year, director_id)
-                movie_service.create_movie(new_movie)
+                self.movie_service.create_movie(new_movie)
             elif choice == 2:
-                movie_service.read_movies()
+                self.movie_service.read_movies()
             elif choice == 3:
                 movie_id = int(input("Please enter movie's id: "))
                 title = input("Please enter movie title: ")
                 year = int(input("Please enter movie year: "))
                 director_id = int(input("Please enter movie director's id: "))
                 updated_movie = Movie(title, year, director_id)
-                movie_service.update_movie(updated_movie, movie_id)
+                self.movie_service.update_movie(updated_movie, movie_id)
             elif choice == 4:
                 movie_id = int(input("Please tell a movie id to delete: "))
-                movie_service.delete_movie(movie_id)
+                self.movie_service.delete_movie(movie_id)
             elif choice == 5:
                 break
 
@@ -243,6 +244,7 @@ if __name__ == "__main__":
         elif choice == 3:
             main_menu.actor_menu()
         elif choice == 4:
+            main_menu.movie_service.close()
             break
 
     # Clean up code

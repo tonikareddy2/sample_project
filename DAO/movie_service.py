@@ -15,9 +15,8 @@ class MovieService:
                 print(row)
         except Exception as e:
             print(e)
-        finally:
-            self.cursor.close()
-            self.conn.close()
+        # finally:
+        #     self.close()
 
     # Task 1
     # Get the data from the user
@@ -47,8 +46,8 @@ class MovieService:
             self.conn.commit()  # Permanent storing | If no commit then no data
         except Exception as e:
             print(e)
-        finally:
-            self.close()
+        # finally:
+        #     self.close()
 
     # Task 2
     # Delete a movie from the db by getting the id from user
@@ -58,8 +57,8 @@ class MovieService:
             self.conn.commit()
         except Exception as e:
             print(e)
-        finally:
-            self.close()
+        # finally:
+        #     self.close()
 
     def close(self):
         self.cursor.close()
