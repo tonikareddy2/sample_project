@@ -152,10 +152,6 @@ class ActorService:
 #         self.director_id = director_id
 
 
-class Director:
-    pass
-
-
 class Actor:
     pass
 
@@ -220,16 +216,26 @@ class MainMenu:
     def director_menu(self):
         while True:
             print(
-                """
-                1. View all Directors
-                2. Back to main menu
+                """      
+                1. Add a Director
+                2. View all Directors
+                3. Update a Director  
+                4. Delete a Director
+                5. Back to main menu
                 """
             )
             choice = int(input("Please choose from above options: "))
-
             if choice == 1:
-                self.director_service.view_directors()
+                name = input("Please enter director name: ")
+                new_director = Director(name)
+                self.director_service.add_director(new_director)
             elif choice == 2:
+                self.director_service.view_directors()
+            elif choice == 3:
+                continue
+            elif choice == 4:
+                continue
+            elif choice == 5:
                 break
 
     def actor_menu(self):
@@ -260,6 +266,7 @@ if __name__ == "__main__":
             main_menu.actor_menu()
         elif choice == 4:
             main_menu.movie_service.close()
+            main_menu.director_service.close()
             break
 
     # Clean up code
