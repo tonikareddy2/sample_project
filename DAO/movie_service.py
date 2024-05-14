@@ -1,7 +1,7 @@
-class MovieService:
-    def __init__(self, conn):
-        self.conn = conn
-        self.cursor = conn.cursor()
+from Util.DBconn import DBconnection
+
+
+class MovieService(DBconnection):
 
     def read_movies(self):
         try:
@@ -59,7 +59,3 @@ class MovieService:
             print(e)
         # finally:
         #     self.close()
-
-    def close(self):
-        self.cursor.close()
-        self.conn.close()

@@ -1,19 +1,19 @@
-import pyodbc
+# import pyodbc
 from Entity.movie import Movie
 from DAO.movie_service import MovieService
 
-server_name = "DESKTOP-P8QAI2N\SQLEXPRESS"
-database_name = "HexawareMovieDB"
+# server_name = "DESKTOP-P8QAI2N\SQLEXPRESS"
+# database_name = "HexawareMovieDB"
 
 
-conn_str = (
-    f"Driver={{SQL Server}};"
-    f"Server={server_name};"
-    f"Database={database_name};"
-    f"Trusted_Connection=yes;"
-)
-# print(conn_str)1
-conn = pyodbc.connect(conn_str)
+# conn_str = (
+#     f"Driver={{SQL Server}};"
+#     f"Server={server_name};"
+#     f"Database={database_name};"
+#     f"Trusted_Connection=yes;"
+# )
+# # print(conn_str)1
+# conn = pyodbc.connect(conn_str)
 # cursor = conn.cursor()
 # cursor.execute("SELECT 1")
 # print("Database connection is successful")
@@ -179,7 +179,7 @@ class Actor:
 # U - Update
 # D - Delete
 class MainMenu:
-    movie_service = MovieService(conn)
+    movie_service = MovieService()
 
     def movie_menu(self):
         while True:
