@@ -1,7 +1,19 @@
 from Util.DBconn import DBconnection
+from abc import ABC, abstractmethod
 
 
-class DirectorService(DBconnection):
+# @-decorators
+class IDirectorService(ABC):
+    @abstractmethod
+    def view_directors(self):
+        pass
+
+    @abstractmethod
+    def add_director(self, Director):
+        pass
+
+
+class DirectorService(IDirectorService, DBconnection):
     def view_directors(self):
         try:
             self.cursor.execute("SELECT * FROM Directors")
