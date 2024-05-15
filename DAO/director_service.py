@@ -1,5 +1,6 @@
 from Util.DBconn import DBconnection
 from abc import ABC, abstractmethod
+from MyExceptions.director_exception import DirectorNotFoundError
 
 
 # @-decorators
@@ -15,11 +16,6 @@ class IDirectorService(ABC):
     @abstractmethod
     def read_director_by_id(self, DirectorID):
         pass
-
-
-class DirectorNotFoundError(Exception):
-    def __init__(self, director_id):
-        super().__init__(f"Director with {director_id} is not found")
 
 
 class DirectorService(IDirectorService, DBconnection):
