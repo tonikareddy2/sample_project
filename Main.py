@@ -47,7 +47,7 @@ class MainMenu:
                 """      
                 1. Add a Director
                 2. View all Directors
-                3. Update a Director  
+                3. read_director_by_id  
                 4. Delete a Director
                 5. Back to main menu
                 """
@@ -60,7 +60,8 @@ class MainMenu:
             elif choice == 2:
                 self.director_service.view_directors()
             elif choice == 3:
-                continue
+                director_id = int(input("Please enter director's id: "))
+                self.director_service.read_director_by_id(director_id)
             elif choice == 4:
                 continue
             elif choice == 5:

@@ -12,6 +12,15 @@ class IDirectorService(ABC):
     def add_director(self, Director):
         pass
 
+    @abstractmethod
+    def read_director_by_id(self, DirectorID):
+        pass
+
+
+class DirectorNotFoundError(Exception):
+    def __init__(self, director_id):
+        super().__init__(f"Director with {director_id} is not found")
+
 
 class DirectorService(IDirectorService, DBconnection):
     def view_directors(self):
@@ -32,16 +41,16 @@ class DirectorService(IDirectorService, DBconnection):
         except Exception as e:
             print(e)
 
-    def update_Director(self, name, DirectorID):
+    def read_director_by_id(self, DirectorID):
         try:
             self.cursor.execute(
-                """
-            Update Movies
-            Set name = ?
-            where DirectorId = ?
-            """,
-                (name, DirectorID),
+                "Select * from Directors where DirectorId=?", (DirectorID,)
             )
-            self.conn.commit()  # Permanent storing | If no commit then no data
+
+            directors = self.cursor.fetchall()
+            if len(directors) == 0:
+                raise DirectorNotFoundError(DirectorID)
+            else:
+                print(directors)  # Permanent storing | If no commit then no data
         except Exception as e:
             print(e)
